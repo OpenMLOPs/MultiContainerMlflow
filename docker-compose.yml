@@ -1,0 +1,9 @@
+#For finding ip of container 172.18.0.2/16
+version: "0.1"
+
+services:
+  ui:
+    build:
+      dockerfile: ./ui/Dockerfile.mlflow
+    ports:
+      - "7000:5000"
