@@ -15,9 +15,9 @@ ENV BACKEND_URI ./mlruns
 ENV ARTIFACT_ROOT ./mlruns
 
 #Running default command to start mlflow server inside container
-CMD ["mlflow", "server", "--backend-store-uri", "${BACKEND_URI}", \ 
-    "--default-artifact-root", "${ARTIFACT_ROOT}", "--host", "0.0.0.0", \
-    "--port", "5000"]
+# CMD ["mlflow", "server", "--backend-store-uri", "${BACKEND_URI}", \ 
+#     "--default-artifact-root", "${ARTIFACT_ROOT}", "--host", "0.0.0.0", \
+#     "--port", "5000"]
 
 #For building image
 #docker image build -t '<AccountName>/<ImgName>:<TagName>' -f 'Dockerfile.mlflow' .

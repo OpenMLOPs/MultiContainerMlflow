@@ -1,9 +1,46 @@
 #For finding ip of container 172.18.0.2/16
 version: "0.1"
-
+name: mflowtrackingserver
 services:
   ui:
+    container_name: mlflow-ui
     build:
       dockerfile: ./ui/Dockerfile.mlflow
     ports:
       - "7000:5000"
+    # environment:
+    #   # TODO - Pickup below details from environment
+    #   # - MYSQL_DATABASE=mflow_db
+    #   # - MYSQL_USER=mlflow_user
+    #   # - MYSQL_PASSWORD=12345
+    #   # - MYSQL_ROOT_PASSWORD=12345
+    #   # - ARTIFACT_ROOT=./mlruns
+    #   # command: mlflow server --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mlflow-db:3306/${MYSQL_DATABASE} #--default-artifact-root ${ARTIFACT_ROOT} --host 0.0.0.0 --port 5000
+    command: mlflow server --backend-store-uri mysql+pymysql://mlflow_user:$12345@mlflow-db:33060/mflow_db --default-artifact-root ./mlruns --host 0.0.0.0 --port 5000
+
+  mlflow-db:
+    container_name: mlflow-db
+    image: "mysql/mysql-server:8.0"
+    restart: on-failure
+    expose:
+      - "3306"
+    ports:
+      - "3306:3306"
+      - "33060:33060"
+    environment:
+      # TODO - Pickup below details from environment
+      - MYSQL_DATABASE=mflow_db
+      - MYSQL_USER=mlflow_user
+      - MYSQL_PASSWORD=12345
+      - MYSQL_ROOT_PASSWORD=12345
+
+  adminer:
+    container_name: adminer
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+
+# If you are modifying image in that case use below commands
+# docker-compose build --no-cache
+# docker-compose up -d
