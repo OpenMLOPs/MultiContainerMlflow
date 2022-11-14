@@ -25,3 +25,4 @@ Step 1: docker compose up
 5. https://github.com/clemens33/mlflow
 6. https://towardsdatascience.com/deploy-mlflow-with-docker-compose-8059f16b6039
 7. https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html
+8. https://github.com/mlflow/mlflow/issues/5450
