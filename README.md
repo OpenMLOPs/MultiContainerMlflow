@@ -1,9 +1,5 @@
 # Objective - Dockerized MLFlow Tracking UI and Artifact storage with external Database
 
-MLFLOW UI (Container)------> Database (LocalHost)
-||**\_\_\_**
-|**\_\_\_\_**>>>>> Artifact Storage (Localhost/UI)
-
 1. MLFlow UI to be hosted on container
 2. Backend URI Database to be connected to localhost Database (PostgreSQL/MySQL)
 3. Artifact URI to be connected to Artifact Store (Local/Containerized)
@@ -19,9 +15,7 @@ MLFLOW UI (Container)------> Database (LocalHost)
 
 # Step 3: Log models and details on deployed mlflowtracking server on docker-desktop/openshift sandbox using MlFlow projects pipeline running on my local system
 
-# Step 4: Log models and details on deployed mlflowtracking server on docker-desktop/openshift sandbox using
-
-# MlFlow projects pipeline running on dockerdesktop/openshift
+# Step 4: Log models and details on deployed mlflowtracking server on docker-desktop/openshift sandbox using MlFlow projects pipeline running on dockerdesktop/openshift
 
 # Step 5: Shift mysql to localhost and connect with it using phpmyadmin container
 
