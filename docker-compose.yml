@@ -1,4 +1,3 @@
-#For finding ip of container 172.18.0.2/16
 version: "0.1"
 name: mflowtrackingserver
 
@@ -8,55 +7,34 @@ services:
     build:
       dockerfile: ./ui/Dockerfile.mlflow
     ports:
-      - "5000:5000"
-    # command: mlflow server --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mlflow-db:3306/${MYSQL_DATABASE} #--default-artifact-root ${ARTIFACT_ROOT} --host 0.0.0.0 --port 5000
-    command: mlflow server --backend-store-uri mysql+pymysql://myUser:myUser@db:3306/mlflow --default-artifact-root ./mlruns --host 0.0.0.0 --port 5000
-
-  #   mysql:
-  #     container_name: mysql
-  #     image: "mysql/mysql-server:8.0"
-  #     restart: on-failure
-  #     command: --default-authentication-plugin=mysql_native_password
-  #     expose:
-  #       - "3306"
-  #     environment:
-  #       MYSQL_ALLOW_EMPTY_PASSWORD: 1
-  #       MYSQL_DATABASE: db
-  #       MYSQL_ROOT_PASSWORD: dbpass
-  #       MYSQL_ROOT_HOST: "%"
-  #       MYSQL_USER: dbuser
-  #       MYSQL_PASSWORD: dbpass
-  #   adminer:
-  #     container_name: adminer
-  #     image: adminer
-  #     restart: always
-  #     ports:
-  #       - "8080:8080"
-  #     depends_on:
-  #       - mysql
-  # volumes:
-  #   mysql:
+      - ${MLFLOW_PORT}:5000
+    # backend-store-uri --> mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@{db-service name}:3306/${MYSQL_DATABASE} 
+    # default-artifact-root ${ARTIFACT_ROOT}
+    command: mlflow server --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@db:3306/${MYSQL_DATABASE} --default-artifact-root ./mlruns --host 0.0.0.0 --port 5000
+  #RDBMS for managing mlflow database
   db:
     image: mysql:5.7
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: myUserPass
-      MYSQL_DATABASE: mlflow
-      MYSQL_USER: myUser
-      MYSQL_PASSWORD: myUser
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
+  #Adminer was giving connection issues so we shifted to phpmyadmin
   phpmyadmin:
     depends_on:
       - db
     image: phpmyadmin/phpmyadmin
     restart: always
     ports:
-      - 8088:80
+      - ${PHPADMIN_PORT}:80
     environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: myUserPass
-  # If you are modifying image in that case use below commands
-  # docker-compose build --no-cache
-  # docker-compose up -d
-  # docker-compose rm -v
-  # docker-compose --env-file .env  up -d 
+      PMA_HOST: ${PMA_HOST}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  # For finding ip on docker
+  # ip addr
+  # For checking which services are running
+  # docker ps
+  # For creating image build and running application
+  # docker-compose --env-file .env  up
