@@ -1,6 +1,9 @@
-apiVersion: v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f ./docker-compose.yml -o ./kubernetes/
+    kompose.version: 1.26.1 (a9d05d509)
   creationTimestamp: null
   labels:
     io.kompose.service: db
@@ -8,11 +11,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    io.kompose.service: db
-  strategy:
-    resources: {}
+    matchLabels:
+      io.kompose.service: db
+  strategy: {}
   template:
     metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f ./docker-compose.yml -o ./kubernetes/
+        kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
         io.kompose.service: db
@@ -27,25 +33,8 @@ spec:
               value: ' pass'
             - name: MYSQL_USER
               value: mlflow_user
-          image: ' '
+          image: mysql:5.7
           name: db
           resources: {}
       restartPolicy: Always
-  test: false
-  triggers:
-    - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - db
-        from:
-          kind: ImageStreamTag
-          name: db:5.7
-      type: ImageChange
-status:
-  availableReplicas: 0
-  latestVersion: 0
-  observedGeneration: 0
-  replicas: 0
-  unavailableReplicas: 0
-  updatedReplicas: 0
+status: {}

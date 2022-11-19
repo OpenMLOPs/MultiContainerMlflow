@@ -4,9 +4,7 @@ name: mflowtrackingserver
 services:
   ui:
     container_name: mlflow-ui
-    build:
-      context: ./ui
-      dockerfile: Dockerfile
+    image: shivgupta121/mflowtrackingserver-ui:mlflow_ctr
     ports:
       - ${MLFLOW_PORT}:5000
     # backend-store-uri --> mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@{db-service name}:3306/${MYSQL_DATABASE} 

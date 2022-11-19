@@ -1,6 +1,9 @@
-apiVersion: v1
-kind: DeploymentConfig
+apiVersion: apps/v1
+kind: Deployment
 metadata:
+  annotations:
+    kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f ./docker-compose.yml -o ./kubernetes/
+    kompose.version: 1.26.1 (a9d05d509)
   creationTimestamp: null
   labels:
     io.kompose.service: ui
@@ -8,11 +11,14 @@ metadata:
 spec:
   replicas: 1
   selector:
-    io.kompose.service: ui
-  strategy:
-    resources: {}
+    matchLabels:
+      io.kompose.service: ui
+  strategy: {}
   template:
     metadata:
+      annotations:
+        kompose.cmd: C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert -f ./docker-compose.yml -o ./kubernetes/
+        kompose.version: 1.26.1 (a9d05d509)
       creationTimestamp: null
       labels:
         io.kompose.service: ui
@@ -29,27 +35,10 @@ spec:
             - 0.0.0.0
             - --port
             - "5000"
-          image: ' '
+          image: shivgupta121/mflowtrackingserver-ui:mlflow_ctr
           name: mlflow-ui
           ports:
             - containerPort: 5000
           resources: {}
       restartPolicy: Always
-  test: false
-  triggers:
-    - type: ConfigChange
-    - imageChangeParams:
-        automatic: true
-        containerNames:
-          - mlflow-ui
-        from:
-          kind: ImageStreamTag
-          name: ui:latest
-      type: ImageChange
-status:
-  availableReplicas: 0
-  latestVersion: 0
-  observedGeneration: 0
-  replicas: 0
-  unavailableReplicas: 0
-  updatedReplicas: 0
+status: {}
