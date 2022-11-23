@@ -1,0 +1,60 @@
+kind: Route
+apiVersion: route.openshift.io/v1
+metadata:
+  name: ui
+  namespace: shiv-gupta121-dev
+  uid: 383e028f-ba1a-47b6-820c-0c911a61d3af
+  resourceVersion: '1742031668'
+  creationTimestamp: '2022-11-21T17:03:35Z'
+  labels:
+    io.kompose.service: ui
+  annotations:
+    openshift.io/host.generated: 'true'
+  managedFields:
+    - manager: oc
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2022-11-21T17:03:35Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:labels':
+            .: {}
+            'f:io.kompose.service': {}
+        'f:spec':
+          'f:port':
+            .: {}
+            'f:targetPort': {}
+          'f:to':
+            'f:kind': {}
+            'f:name': {}
+            'f:weight': {}
+          'f:wildcardPolicy': {}
+    - manager: openshift-router
+      operation: Update
+      apiVersion: route.openshift.io/v1
+      time: '2022-11-21T17:03:35Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:status':
+          'f:ingress': {}
+      subresource: status
+spec:
+  host: ui-shiv-gupta121-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+  to:
+    kind: Service
+    name: ui
+    weight: 100
+  port:
+    targetPort: 5000
+  wildcardPolicy: None
+status:
+  ingress:
+    - host: ui-shiv-gupta121-dev.apps.sandbox-m2.ll9k.p1.openshiftapps.com
+      routerName: default
+      conditions:
+        - type: Admitted
+          status: 'True'
+          lastTransitionTime: '2022-11-21T17:03:35Z'
+      wildcardPolicy: None
+      routerCanonicalHostname: router-default.apps.sandbox-m2.ll9k.p1.openshiftapps.com

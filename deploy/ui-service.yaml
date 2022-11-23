@@ -1,0 +1,67 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ui
+  namespace: shiv-gupta121-dev
+  uid: 8cd5cd19-7913-45c5-8583-7f6ccd554c40
+  resourceVersion: '1741881759'
+  creationTimestamp: '2022-11-21T16:04:39Z'
+  labels:
+    io.kompose.service: ui
+  annotations:
+    kompose.cmd: >-
+      C:\ProgramData\chocolatey\lib\kubernetes-kompose\tools\kompose.exe convert
+      -f ./docker-compose.yml -o ./deploy/
+    kompose.version: 1.26.1 (a9d05d509)
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{"kompose.cmd":"C:\\ProgramData\\chocolatey\\lib\\kubernetes-kompose\\tools\\kompose.exe
+      convert -f ./docker-compose.yml -o ./deploy/","kompose.version":"1.26.1
+      (a9d05d509)"},"creationTimestamp":null,"labels":{"io.kompose.service":"ui"},"name":"ui","namespace":"shiv-gupta121-dev"},"spec":{"ports":[{"name":"5000","port":5000,"targetPort":5000}],"selector":{"io.kompose.service":"ui"}},"status":{"loadBalancer":{}}}
+  managedFields:
+    - manager: kubectl-client-side-apply
+      operation: Update
+      apiVersion: v1
+      time: '2022-11-21T16:04:39Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:metadata':
+          'f:annotations':
+            .: {}
+            'f:kompose.cmd': {}
+            'f:kompose.version': {}
+            'f:kubectl.kubernetes.io/last-applied-configuration': {}
+          'f:labels':
+            .: {}
+            'f:io.kompose.service': {}
+        'f:spec':
+          'f:internalTrafficPolicy': {}
+          'f:ports':
+            .: {}
+            'k:{"port":5000,"protocol":"TCP"}':
+              .: {}
+              'f:name': {}
+              'f:port': {}
+              'f:protocol': {}
+              'f:targetPort': {}
+          'f:selector': {}
+          'f:sessionAffinity': {}
+          'f:type': {}
+spec:
+  clusterIP: 172.30.113.65
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: '5000'
+      protocol: TCP
+      port: 5000
+      targetPort: 5000
+  internalTrafficPolicy: Cluster
+  clusterIPs:
+    - 172.30.113.65
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    io.kompose.service: ui
+status:
+  loadBalancer: {}

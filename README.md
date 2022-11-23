@@ -20,7 +20,7 @@
    SOLUTION -1: Issue was due to version: "0.1" defined inside docker-compose. Changed it to "2.0"
    SUBISSUE -2: Service 'ui' has neither an image nor a build context specified. At least one must be provided.
    SOLUTION -2: Added context and assigned folder for mlflow dockerfile and renamed Dockerfile.mlflow as Dockerfile
-   c. For converting into kubernetes compliant yaml's kompose convert -f ./docker-compose.yml -o ./kubernetes/ --provider=openshift
+   c. For converting into kubernetes compliant yaml's kompose convert -f ./docker-compose.yml -o ./deploy/ --provider=openshift
    d. Deploy to Red hat Openshift
    SUBISSUE -1: Cannot create image from local image file
    SOLUTION -1: push image to dockerhub (Ref 12)
