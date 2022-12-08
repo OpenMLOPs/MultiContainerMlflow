@@ -10,6 +10,7 @@ services:
     # backend-store-uri --> mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@{db-service name}:3306/${MYSQL_DATABASE} 
     # default-artifact-root ${ARTIFACT_ROOT}
     command: mlflow server --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE} --default-artifact-root ./mlruns --host 0.0.0.0 --port 5000
+    # command: mlflow server --backend-store-uri mysql+pymysql://${MYSQL_USER}:${MYSQL_PASSWORD}@mysql:3306/${MYSQL_DATABASE} --file-store ./mlruns --host 0.0.0.0 --port 5000
   #RDBMS for managing mlflow database
   mysql:
     image: mysql:5.7
@@ -20,22 +21,11 @@ services:
       MYSQL_USER: ${MYSQL_USER}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
 
-  # #Adminer was giving connection issues so we shifted to phpmyadmin
-  # phpmyadmin:
-  #   depends_on:
-  #     - db
-  #   image: phpmyadmin/phpmyadmin
-  #   restart: always
-  #   ports:
-  #     - ${PHPADMIN_PORT}:${APACHE_PORT}
-  #   environment:
-  #     APACHE_PORT: ${APACHE_PORT}
-  #     PMA_HOST: ${PMA_HOST}
-  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-
   # For finding ip on docker
-  # ip addr
+  # ip addrs
   # For checking which services are running
   # docker ps
   # For creating image build and running application
   # docker-compose --env-file .env  up
+  # For generating deployment yamls
+  # kompose convert -f ./docker-compose.yml -o ./deploy/

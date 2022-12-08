@@ -21,13 +21,20 @@
    SUBISSUE -2: Service 'ui' has neither an image nor a build context specified. At least one must be provided.
    SOLUTION -2: Added context and assigned folder for mlflow dockerfile and renamed Dockerfile.mlflow as Dockerfile
    c. For converting into kubernetes compliant yaml's kompose convert -f ./docker-compose.yml -o ./deploy/ --provider=openshift
+   kompose convert -f ./docker-compose.yml -o ./openshift/
    d. Deploy to Red hat Openshift
    SUBISSUE -1: Cannot create image from local image file
    SOLUTION -1: push image to dockerhub (Ref 12)
-   SUBISSUE -2: Image has been created but cannot see url to connect to
-   SOLUTION -2: Expose the route (Ref 14)
-   SUBISSUE -3: Unable to see anything on route
-   SOLUTION -3
+
+2. ISSUE 2 - Deployment to Redhat openshift
+   SUBISSUE -1: Image has been created but cannot see url to connect to
+   SOLUTION -1: Expose the route (Ref 14)
+   SUBISSUE -2: Create persistant volume for artifact storage
+   SOLUTION -2 Did it using UI (Ref 18)
+   SUBISSUE -3 mlruns was not found
+   SOLUTION -3 Added persistent volume to pod and created mount path to be referred by mlflow server
+
+3. ISSUE 3 - Oauth for URL
 
 # Step 3: Log models and details on deployed mlflowtracking server on docker-desktop/openshift sandbox using MlFlow projects pipeline running on my local system
 
@@ -51,3 +58,7 @@
 12. https://hub.docker.com/repository/create?namespace=shivgupta121
 13. https://github.com/AICoE/mlflow-tracking-operator/tree/master/examples
 14. https://docs.openshift.com/container-platform/3.11/dev_guide/expose_service/expose_internal_ip_service.html
+15. https://stackoverflow.com/questions/52331254/how-to-store-artifacts-on-a-server-running-mlflow
+16. https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
+17. https://www.kubeflow.org/docs/distributions/openshift/install-kubeflow/
+18. https://www.howtogeek.com/devops/how-to-add-persistent-storage-to-kubernetes-pods/
