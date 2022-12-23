@@ -34,14 +34,6 @@
    SUBISSUE -3 mlruns was not found
    SOLUTION -3 Added persistent volume to pod and created mount path to be referred by mlflow server
 
-3. ISSUE 3 - Oauth for URL
-
-# Step 3: Log models and details on deployed mlflowtracking server on docker-desktop/openshift sandbox using MlFlow projects pipeline running on my local system
-
-# Step 4: Log models and details on deployed mlflowtracking server on docker-desktop/openshift sandbox using MlFlow projects pipeline running on dockerdesktop/openshift
-
-# Step 5: Shift mysql to localhost and connect with it using phpmyadmin container
-
 # Useful Links
 
 1.  https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach
@@ -62,3 +54,4 @@
 16. https://kubernetes.io/docs/tasks/configure-pod-container/configure-persistent-volume-storage/
 17. https://www.kubeflow.org/docs/distributions/openshift/install-kubeflow/
 18. https://www.howtogeek.com/devops/how-to-add-persistent-storage-to-kubernetes-pods/
+19. https://docs.docker.com/storage/volumes/
