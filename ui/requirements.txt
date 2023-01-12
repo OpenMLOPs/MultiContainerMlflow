@@ -1,4 +1,4 @@
-mlflow==1.25.1
+mlflow==2.0.1
 PyMySQL==1.0.2
 mysql-connector-python==8.0.31
 cryptography==38.0.3
