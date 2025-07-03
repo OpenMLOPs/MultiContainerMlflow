@@ -30,3 +30,8 @@
 7. https://dev.mysql.com/doc/refman/8.0/en/docker-mysql-getting-started.html
 8. https://github.com/mlflow/mlflow/issues/5450
 9. https://stackoverflow.com/questions/53078135/php-network-getaddresses-getaddrinfo-failed-error-in-dockers-adminer
+
+## Simulating docker-compose
+
+Use `./simulate-compose.sh` to preview the commands needed to start the MLflow stack without Docker. The script reads variables from `.env` and prints the equivalent commands to launch MLflow, MySQL and phpMyAdmin locally.
+
