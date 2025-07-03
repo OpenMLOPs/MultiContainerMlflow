@@ -5,6 +5,7 @@ services:
   ui:
     container_name: mlflow-ui
     build:
+      context: .
       dockerfile: ./ui/Dockerfile.mlflow
     ports:
       - ${MLFLOW_PORT}:5000
