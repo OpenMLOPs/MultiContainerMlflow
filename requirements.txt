@@ -1,5 +1,5 @@
-mlflow==1.25.1
-PyMySQL==1.0.2
-mysql-connector-python==8.0.31
-cryptography==38.0.3
-psycopg2-binary
+mlflow==3.1.1
+PyMySQL==1.1.1
+mysql-connector-python==9.3.0
+cryptography==45.0.5
+psycopg2-binary==2.9.10
